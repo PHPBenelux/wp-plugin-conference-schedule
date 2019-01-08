@@ -245,8 +245,10 @@ class phpbenelux_schedule_widget extends WP_Widget
             if ((int) $firstItem['start'] <= self::START_KEYNOTE) {
                 continue;
             }
-            $startTime = new \DateTime('@'.$firstItem['start']);
-            $endTime = new \DateTime('@'.$firstItem['end']);
+            $startTime = new \DateTime();
+            $startTime->setTimestamp($firstItem['start']);
+            $endTime = new \DateTime();
+            $endTime->setTimestamp($firstItem['end']);
 
             $cssSessionClass = '';
             $cssTimeClass = '';
@@ -300,7 +302,8 @@ class phpbenelux_schedule_widget extends WP_Widget
 
                 $start = get_field('start');
                 $room = get_field('room');
-                $startDate = new \DateTime('@'.$start);
+                $startDate = new \DateTime();
+                $startDate->setTimestamp($start);
                 $day = $startDate->format('d');
 
                 /** @var array $registeredSpeakers */
