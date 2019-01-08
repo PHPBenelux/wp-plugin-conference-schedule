@@ -16,8 +16,9 @@ function phpbenelux_schedule_widget_init() {
 
 class phpbenelux_schedule_widget extends WP_Widget
 {
-    const FRIDAY = 26;
-    const SATURDAY = 27;
+    const FRIDAY = 25;
+    const SATURDAY = 26;
+    const START_KEYNOTE = 1548419400;
 
     /**
      * @var array
@@ -241,7 +242,7 @@ class phpbenelux_schedule_widget extends WP_Widget
         foreach ($todaysSchedule as $timeSlot) {
             ksort($timeSlot);
             $firstItem = reset($timeSlot);
-            if ((int) $firstItem['start'] <= 1516973400) {
+            if ((int) $firstItem['start'] <= self::START_KEYNOTE) {
                 continue;
             }
             $startTime = new \DateTime('@'.$firstItem['start']);
