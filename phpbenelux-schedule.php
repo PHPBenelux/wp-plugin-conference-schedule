@@ -18,7 +18,7 @@ class phpbenelux_schedule_widget extends WP_Widget
 {
     const FRIDAY = 25;
     const SATURDAY = 26;
-    const START_KEYNOTE = 1548427200;
+    const START_KEYNOTE = 1548423000;
 
     /**
      * @var array
