@@ -34,8 +34,14 @@
 
 .sponsors-widget .post-heading,
 .schedule .post-heading {
-    background: linear-gradient(#ffffff, #cccccc);
+    background: linear-gradient(#ffffff, #1da1db);
     padding: 8px;
+    border-radius: 5px;
+}
+
+.sponsors-widget .post-heading h2 {
+    margin: 0;
+    padding: 0;
 }
 
 @media screen and (min-width: 48em) {
