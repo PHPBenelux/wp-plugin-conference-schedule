@@ -9,9 +9,14 @@ Author URI: http://phpbenelux.eu/
 */
 
 add_action( 'widgets_init', 'phpbenelux_schedule_widget_init' );
+add_action( 'wp_enqueue_scripts','enqueue_phpbenelux_schedule_styles');
 
 function phpbenelux_schedule_widget_init() {
     register_widget( 'phpbenelux_schedule_widget' );
+}
+
+function enqueue_phpbenelux_schedule_styles() {
+	wp_enqueue_style('related-styles', plugins_url('/schedule.css', __FILE__));
 }
 
 class phpbenelux_schedule_widget extends WP_Widget
