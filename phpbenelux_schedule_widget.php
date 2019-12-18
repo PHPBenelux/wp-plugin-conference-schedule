@@ -3,7 +3,7 @@
 Plugin Name: PHPBenelux Schedule
 Version: 1.0
 Plugin URI: http://phpbenelux.eu
-Description: Schedule plugin 2017
+Description: Schedule plugin
 Author: Martin de Keijzer
 Author URI: http://phpbenelux.eu/
 */
@@ -16,9 +16,9 @@ function phpbenelux_schedule_widget_init() {
 
 class phpbenelux_schedule_widget extends WP_Widget
 {
-    const FRIDAY = 25;
-    const SATURDAY = 26;
-    const START_KEYNOTE = 1548423000;
+    const FRIDAY = 24;
+    const SATURDAY = 25;
+    const START_KEYNOTE = 1579869000;
 
     /**
      * @var array
@@ -36,21 +36,23 @@ class phpbenelux_schedule_widget extends WP_Widget
         );
 
         parent::__construct( 'phpbenelux_schedule_widget', 'PHPBenelux schedule Widget', $widget_details );
-
     }
 
     /**
      * @param array $instance
+     *
      * @return void
      */
     public function form($instance) {
         // Backend Form
     }
 
-    /**
-     * @param array $args
-     * @param array $instance
-     */
+	/**
+	 * @param array $args
+	 * @param array $instance
+	 *
+	 * @throws Exception
+	 */
     public function widget($args, $instance) {
         ?>
         <p>Jump to:</p>
@@ -68,7 +70,7 @@ class phpbenelux_schedule_widget extends WP_Widget
                 <div class="post-title-wrapper">
                     <h3 class="post-title">Morning tutorials (tutorial tickets only)</h3></div>
             </header>
-            <a name="tutorials">&nbsp;</a>
+            <a id="tutorials">&nbsp;</a>
             <p>For the tutorial rooms you'll be given directions upon registration.</p>
             <?php
                 $this->renderTutorials();
@@ -86,7 +88,7 @@ class phpbenelux_schedule_widget extends WP_Widget
                 <div class="post-title-wrapper">
                     <h3 class="post-title">Afternoon conference</h3></div>
             </header>
-            <a name="friday-afternoon">&nbsp;</a>
+            <a id="friday-afternoon">&nbsp;</a>
             <div class="row hidden-xs">
                 <div class="col-xs-2 with-border">&nbsp;</div>
                 <div class="col-xs-10 text-center with-border"><h3>Auditorium</h3></div>
@@ -124,7 +126,7 @@ class phpbenelux_schedule_widget extends WP_Widget
                 <div class="post-title-wrapper">
                     <h3 class="post-title">Conference</h3></div>
             </header>
-            <a name="saturday">&nbsp;</a>
+            <a id="saturday">&nbsp;</a>
             <div class="row hidden-xs">
                 <div class="col-xs-2 col-xs-2-5 with-border hidden-xs">&nbsp;</div>
                 <div class="col-xs-2 col-xs-2-5 with-border"><h3>Track A<br> (Beethoven)</h3></div>
@@ -224,10 +226,13 @@ class phpbenelux_schedule_widget extends WP_Widget
         wp_reset_postdata();
     }
 
-    /**
-     * Render the talks for a certain day
-     * @param int $dayToShow
-     */
+	/**
+	 * Render the talks for a certain day
+	 *
+	 * @param int $dayToShow
+	 *
+	 * @throws Exception
+	 */
     protected function renderTalks($dayToShow)
     {
         if ($this->schedule === null) {
